@@ -53,9 +53,9 @@ describe('Web App Tests', function () {
             await driver.findElement(By.id('carSubmitButton')).click();
             await driver.sleep(1000);
             if(driver.findElement(By.id('carSubmitButton'))){
-                console.log('Remained on products page');
+                console.log('\tRemained on products page');
             } else{
-                console.log('Left products page');
+                console.log('\tLeft products page');
             }
         });
     });
