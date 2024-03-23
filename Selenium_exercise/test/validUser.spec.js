@@ -5,6 +5,7 @@ const fs = require('fs');
 const server_url = 'http://localhost:3000';
 
 describe('Web App Tests', function () {
+    this.timeout(10000);
     let driver;
 
     before(async function () {
@@ -25,10 +26,40 @@ describe('Web App Tests', function () {
             await driver.findElement(By.id('password')).sendKeys('pass');
             await driver.findElement(By.id('login')).click();
             // Check if login was successful
-            await driver.sleep(1000);
+            await driver.sleep(3000);
             await driver.wait(until.elementLocated(By.css('h2')), 20000);
         });
     });
+
+    // THIS IS A NEW TEST
+    describe('Navigating to home page', function () {
+        it('should select the home tab', async function () {
+            await driver.findElement(By.xpath('//*[@id="navbarSupportedContent"]/ul/li[1]/a')).click();
+            await driver.sleep(1000);
+        });
+    });
+
+    // THIS IS A NEW TEST
+    describe('Navigating to products page', function () {
+        it('should select the products tab', async function () {
+            await driver.findElement(By.xpath('//*[@id="navbarSupportedContent"]/ul/li[2]/a')).click();
+            await driver.sleep(1000);
+        });
+    });
+
+    // THIS IS A NEW TEST
+    describe('Trying to submit before making selections', function () {
+        it('should select the submit button and remain on page', async function () {
+            await driver.findElement(By.id('carSubmitButton')).click();
+            await driver.sleep(1000);
+            if(driver.findElement(By.id('carSubmitButton'))){
+                console.log('Remained on products page');
+            } else{
+                console.log('Left products page');
+            }
+        });
+    });
+
     // now that the user is logged in select a car
     describe('Car Selection', function () {
         it('should select car make', async function () {

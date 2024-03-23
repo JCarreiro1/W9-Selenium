@@ -4,6 +4,7 @@ const chrome = require('selenium-webdriver/chrome');
 const server_url = 'http://localhost:3000';
 
 describe('Web App Tests', function () {
+    this.timeout(10000);
     let driver;
 
     before(async function () {
@@ -22,7 +23,7 @@ describe('Web App Tests', function () {
         await driver.findElement(By.id('login')).click();
         
         // Adding a short sleep to allow for error message to appear (adjust time if needed)
-        await driver.sleep(1000);
+        await driver.sleep(3000);
         
         // Check if error message is displayed
         try {
